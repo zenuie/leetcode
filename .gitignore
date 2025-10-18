@@ -114,3 +114,4 @@ dmypy.json
 .pyre/
 .idea/kata.iml
 .idea/dictionaries/zenuie.xml
+.idea
