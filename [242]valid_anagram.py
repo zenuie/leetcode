@@ -1,13 +1,33 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        tmp_dict = {}
+        # s length != t length (edge case)
         if len(s) != len(t):
             return False
-        for i in s:
-            if i not in t:
+
+        # create tmp dict
+        for ch in s:
+            if ch not in tmp_dict:
+                tmp_dict[ch] = 1
+            else:
+                tmp_dict[ch] += 1
+
+        # check t in tmp dict
+        for ch in t:
+            if ch in tmp_dict and tmp_dict[ch] > 0:
+                tmp_dict[ch] -= 1
+            else:
                 return False
-            t = t.replace(i, '', 1)
         return True
 
 
-s = Solution()
-s.isAnagram(s="aacc", t="ccac")
+from collections import Counter
+
+
+class ToolSolution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+
+
+test = Solution()
+print(test.isAnagram("anagram", "nagaram"))

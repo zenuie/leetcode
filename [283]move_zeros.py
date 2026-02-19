@@ -3,13 +3,19 @@ from typing import List
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
-        write = 0
-        for read in range(len(nums)):
-            if nums[read] != 0:
-                if read != write:  # 避免不必要的自我交換
-                    nums[write], nums[read] = nums[read], nums[write]  # 把兩個位置互換
-                write += 1
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        i_pointer = 0
+        j_pointer = 0
+        while j_pointer != len(nums):
+            if nums[j_pointer] != 0:
+                tmp_i = nums[i_pointer]
+                nums[i_pointer] = nums[j_pointer]
+                nums[j_pointer] = tmp_i
+                i_pointer += 1
+            j_pointer += 1
 
 
 test = Solution()
-print(test.moveZeroes([0, 1, 0, 3, 12]))
+test.moveZeroes([1,0])
