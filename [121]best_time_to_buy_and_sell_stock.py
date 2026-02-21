@@ -1,15 +1,18 @@
+from typing import List
+
+
 class Solution:
-    def maxProfit(self, prices):
-        if not prices: return 0
-        base = prices[0]
-        result = 0
-        for i in range(len(prices) - 1):
-            if prices[i] > prices[i + 1] and prices[i + 1] < base:
-                base = prices[i + 1]
-            else:
-                if prices[i + 1] - base > result: result = prices[i + 1] - base
-        return result
+    def maxProfit(self, prices: List[int]) -> int:
+        # 把目前最低存起來
+        lower_price = float("inf")
+        max_profit = 0
+        for price in prices:
+            if price < lower_price:
+                lower_price = price
+            elif price - lower_price > max_profit:
+                max_profit = price - lower_price
+        return max_profit
 
 
-s = Solution()
-s.maxProfit([])
+test = Solution()
+print(test.maxProfit([3, 1, 5, 6, 4, 8]))
